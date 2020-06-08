@@ -1,0 +1,29 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"> </script>
+
+<script>
+  async function load() {
+    const model = await tf.loadLayersModel('model_js/model.json');
+    return model;
+  };
+
+  function predict(model) {
+    userInput = document.getElementById('userInput').value;	
+    const inputTensor = tf.tensor([parseInt(userInput)]);  // and convert it to a tensor
+
+    // now lets make the prediction
+    model.then(model => {
+      let result = model.predict(inputTensor);  // make prediction
+      result = result.round().dataSync()[0];  // round and get value
+      alert(result ? "odd" : "even");  // creates pop-up
+    });
+  };
+
+  const model = load();
+</script>
+
+<input type="text" id="userInput"></input>
+
+<button onclick="predict(model)">Predict</button>
+
+</html>
