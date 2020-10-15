@@ -6,5 +6,4 @@
 3. Here, we are telling tensorflowjs_converter to expect the keras model format. That .json file is our web-enabled model, ready for use in JavaScript.
 4. Embed the model json in html and execute it.
 
-
 </pre>
